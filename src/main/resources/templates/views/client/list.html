@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="views/view-template :: head">
+    <title>Customer Management</title>
+</head>
+<body>
+    <!-- header -->
+    <header th:replace="views/view-template :: header"></header>
+    <!-- main -->
+    <main>
+        <div class="container-md">
+            <table class="table table-bordered table-hover table-striped table-responsive">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Phone Number</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">City</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    <tr th:each="client : ${clientList}">
+                        <th scope="row" th:text="${client.id}"></th>
+                        <td th:text="${client.firstName}"></td>
+                        <td th:text="${client.lastName}"></td>
+                        <td th:text="${client.phoneNumber}"></td>
+                        <td th:text="${client.email}"></td>
+                        <td th:text="${client.city.city}"></td>
+                        <td>
+                            <a class="btn btn-success btn-sm" th:href="@{/views/client/edit(id=${client.id})}">Edit</a>
+                            <a class="btn btn-danger btn-sm" th:href="@{/views/client/delete(id=${client.id})}">Delete</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <!-- footer -->
+    <footer th:replace="views/view-template :: footer"></footer>
+</body>
+</html>
